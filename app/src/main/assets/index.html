@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!-- saved from url=(0144)file:///C:/Users/Administrator/Desktop/%E5%9B%9B%E5%AD%A3%E5%BE%BD%E7%BE%BD_%E5%9C%BA%E5%9C%B0%E8%B4%B9%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#153f32">
+<title>四季徽羽｜场地费用计算</title>
+<style>
+:root{
+  --green:#174f3b;--green2:#236b50;--mint:#eaf3ed;--mint2:#f4f8f5;
+  --ink:#1e2923;--muted:#7a877f;--line:#e4eae5;--bg:#f3f6f3;
+  --white:#fff;--gold:#c69b55;--red:#bd5550;--shadow:0 8px 26px rgba(22,55,39,.055);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans CJK SC",sans-serif;font-size:14px}
+button,input{font:inherit}
+.top{background:linear-gradient(135deg,#123d2f,#22664a);color:#fff;padding:23px 18px 25px}
+.top-inner{max-width:760px;margin:auto;display:flex;justify-content:center;align-items:center;text-align:center}.brand-block{display:flex;flex-direction:column;align-items:center}
+.brand{font-size:24px;font-weight:800;letter-spacing:3px}
+.tagline{font-size:11px;opacity:.78;margin-top:7px;letter-spacing:2px}
+.brand-mark{width:46px;height:46px;border:1px solid #ffffff55;border-radius:15px;display:grid;place-items:center;font-size:24px;background:#ffffff12}
+main{max-width:760px;margin:0 auto;padding:14px 14px 38px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:13px;box-shadow:var(--shadow)}
+.head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
+.head h2{margin:0;font-size:15px;font-weight:750}
+.step{font-size:11px;color:var(--green2);background:var(--mint);border-radius:99px;padding:5px 9px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field label{display:block;color:var(--muted);font-size:12px;margin:0 0 7px}
+input{width:100%;height:47px;border:1px solid var(--line);border-radius:11px;padding:0 12px;background:#fbfcfb;color:var(--ink);outline:none;font-size:16px}
+input:focus{border-color:#5b9879;box-shadow:0 0 0 3px #236b5015;background:#fff}
+input::placeholder{color:#b0b9b3}
+.people-wrap{display:flex;align-items:center;gap:12px}
+.people-input{width:130px;max-width:42%}
+.unit{color:var(--muted);font-size:13px}
+.help{font-size:11px;color:var(--muted);line-height:1.55;margin-top:9px}
+.rate-box{background:var(--mint2);border:1px solid #e4eee7;border-radius:13px;padding:11px}
+.rate-title{font-size:12px;color:#617268;margin-bottom:7px}
+.rate-input{display:flex;align-items:center;gap:7px}
+.rate-input input{height:42px;background:#fff}
+.rate-input span{font-size:12px;color:var(--muted);white-space:nowrap}
+.rate-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.boundary-row{display:flex;align-items:center;gap:10px;margin-top:11px}
+.boundary-row input{max-width:130px;height:42px}
+.boundary-row label{font-size:12px;color:var(--muted)}
+.court{border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
+.court-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.court-name{font-weight:700;font-size:13px}
+.remove{border:0;background:transparent;color:var(--red);font-size:12px;padding:5px 7px}
+.court-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.court-fields label{display:block;color:var(--muted);font-size:11px;margin-bottom:6px}
+.court-fields input{height:45px;padding:0 9px;font-size:15px;font-variant-numeric:tabular-nums}
+.time-input{text-align:center;letter-spacing:1px}
+.btn{height:45px;border:0;border-radius:12px;padding:0 15px;font-weight:700;cursor:pointer}
+.btn-primary{background:var(--green);color:#fff}
+.btn-secondary{background:var(--mint);color:var(--green)}
+.btn-light{background:#f2f5f3;color:#526159}
+.btn-add{width:100%;margin-top:10px;border:1px dashed #a8c2b1;background:#f8fbf8;color:var(--green)}
+.result{background:linear-gradient(135deg,#edf6ef,#f7faf7);border:1px solid #deebe1;border-radius:16px;padding:15px}
+.result-label{font-size:12px;color:#63736a}
+.total{font-size:34px;line-height:1.2;font-weight:850;color:var(--green);letter-spacing:-.5px;margin:4px 0 13px;font-variant-numeric:tabular-nums}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid #dce9df;padding-top:12px}
+.result-cell span{display:block;color:#718078;font-size:11px;margin-bottom:4px}
+.result-cell strong{font-size:21px;color:var(--green);font-variant-numeric:tabular-nums}
+.detail-head{display:flex;justify-content:space-between;align-items:center;margin:15px 0 7px}
+.detail-head b{font-size:13px}
+.detail-list{border-top:1px solid #e0e9e2}
+.detail{padding:10px 0;border-bottom:1px solid #e7eee8;display:flex;justify-content:space-between;gap:12px}
+.detail-main{min-width:0}
+.detail-title{font-size:13px;font-weight:700}
+.detail-sub{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}
+.detail-amount{font-size:14px;font-weight:800;color:var(--green);white-space:nowrap;font-variant-numeric:tabular-nums}
+.empty{font-size:12px;color:var(--muted);padding:14px 0}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.footnote{font-size:11px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+.time-input{cursor:pointer;text-align:center;font-weight:650;letter-spacing:.5px;background:#fbfcfb}
+.time-input:focus{background:#fff}
+.picker-mask{position:fixed;inset:0;background:rgba(13,28,20,.42);display:none;align-items:flex-end;justify-content:center;z-index:20;padding:12px}
+.picker-mask.show{display:flex}
+.picker-sheet{width:min(100%,480px);background:#fff;border-radius:22px;padding:17px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:0 12px 50px rgba(0,0,0,.18)}
+.picker-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.picker-head strong{font-size:16px}
+.picker-cancel{background:#f0f3f1;color:#647168;border:0;border-radius:10px;padding:9px 12px}
+.picker-confirm{background:var(--green);color:#fff;border:0;border-radius:10px;padding:9px 15px;font-weight:700}
+.picker-preview{text-align:center;font-size:28px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;margin:8px 0 16px}
+.picker-columns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.picker-col label{display:block;text-align:center;font-size:12px;color:var(--muted);margin-bottom:7px}
+.picker-col select{width:100%;height:190px;border:1px solid var(--line);border-radius:13px;background:#f8faf8;text-align:center;font-size:22px;font-weight:700;color:var(--ink);padding:8px}
+.picker-col option{text-align:center}
+.minute-wheel{height:190px;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y mandatory;border:1px solid var(--line);border-radius:13px;background:linear-gradient(#f8faf8,#fff 28%,#fff 72%,#f8faf8);position:relative;scrollbar-width:none}
+.minute-wheel::-webkit-scrollbar{display:none}
+.minute-wheel-inner{padding:76px 0}
+.minute-item{height:38px;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;font-size:18px;color:#a0aaa3;user-select:none}
+.minute-item.selected{font-size:23px;font-weight:800;color:var(--green);background:#eaf4ee}
+.minute-wheel:after{content:"";position:sticky;display:block;pointer-events:none;top:76px;height:38px;margin-top:-190px;border-top:1px solid #dce9df;border-bottom:1px solid #dce9df}
+.picker-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#1f2a24;color:#fff;border-radius:99px;padding:10px 16px;font-size:12px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
+.toast.show{opacity:1}
+@media(max-width:390px){
+ main{padding:12px 10px 30px}.card{padding:13px;border-radius:15px}
+ .court-fields{grid-template-columns:1fr 1fr}
+ .total{font-size:30px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-block">
+      <div class="brand">四季徽羽</div>
+      <div class="tagline">FOUR SEASONS BADMINTON</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <div class="head"><h2>参与人数</h2><span class="step">手动填写</span></div>
+    <div class="people-wrap">
+      <input class="people-input" id="people" type="number" min="1" max="999" step="1" inputmode="numeric" value="" placeholder="例如 15" aria-label="参与人数">
+      <span class="unit">人</span>
+    </div>
+    
+  </section>
+
+  <section class="card">
+    <div class="head"><h2>收费规则</h2><span class="step">可自行修改</span></div>
+    <div class="rate-row">
+      <div class="rate-box">
+        <div class="rate-title">分界时间之前</div>
+        <div class="rate-input"><input id="beforeRate" type="number" min="0" step="0.01" inputmode="decimal" value="30"><span>元/小时</span></div>
+      </div>
+      <div class="rate-box">
+        <div class="rate-title">分界时间及之后</div>
+        <div class="rate-input"><input id="afterRate" type="number" min="0" step="0.01" inputmode="decimal" value="20"><span>元/小时</span></div>
+      </div>
+    </div>
+    <div class="boundary-row">
+      <label for="boundary">收费分界时间</label>
+      <input id="boundary" type="text" inputmode="numeric" maxlength="5" value="21:00" placeholder="21:00">
+    </div>
+    
+  </section>
+
+  <section class="card">
+    <div class="head"><h2>场地使用时间</h2><span class="step">手动输入 · 精确到分钟</span></div>
+    
+    <div id="courtList"><div class="court" data-id="1">
+    <div class="court-head">
+      <span class="court-name">场地 <span class="court-index">1</span></span>
+      <button type="button" class="remove">移除</button>
+    </div>
+    <div class="court-fields">
+      <div>
+        <label>开始时间</label>
+        <input class="start time-input" type="text" readonly="" inputmode="none" placeholder="选择时间" value="" aria-label="开始时间">
+      </div>
+      <div>
+        <label>结束时间</label>
+        <input class="end time-input" type="text" readonly="" inputmode="none" placeholder="选择时间" value="" aria-label="结束时间">
+      </div>
+    </div></div></div>
+    <button class="btn btn-add" id="addCourt">＋ 添加场地时间</button>
+  </section>
+
+  <section class="card">
+    <div class="head"><h2>费用计算结果</h2><span class="step">自动计算</span></div>
+    <div class="result">
+      <div class="result-label">场地费用总额</div>
+      <div class="total" id="total">¥ 0.00</div>
+      <div class="result-grid">
+        <div class="result-cell"><span>参与人数</span><strong id="peopleSummary">16 人</strong></div>
+        <div class="result-cell"><span>人均费用</span><strong id="average">¥ 0.00</strong></div>
+      </div>
+      <div class="detail-head"><b>费用明细</b><span class="step" id="validCount">0 片有效</span></div>
+      <div class="detail-list" id="details"><div class="empty">填写场地序号、开始和结束时间后，自动显示逐片费用明细。</div></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="copy">复制费用明细</button>
+      <button class="btn btn-light" id="reset">恢复默认设置</button>
+    </div>
+  </section>
+  <div class="footnote" style="text-align:center;padding-bottom:12px">四季徽羽 · 离线费用计算工具</div>
+</main>
+
+<div class="picker-mask" id="timePicker" role="dialog" aria-modal="true" aria-label="选择时间">
+  <div class="picker-sheet">
+    <div class="picker-head">
+      <button class="picker-cancel" id="pickerCancel" type="button">取消</button>
+      <strong id="pickerTitle">选择时间</strong>
+      <button class="picker-confirm" id="pickerDone" type="button">确定</button>
+    </div>
+    <div class="picker-preview" id="pickerPreview">:00</div>
+    <div class="picker-columns">
+      <div class="picker-col">
+        <label for="pickerHour">小时</label>
+        <select id="pickerHour" size="6" aria-label="选择小时"><option value="00">00 时</option><option value="01">01 时</option><option value="02">02 时</option><option value="03">03 时</option><option value="04">04 时</option><option value="05">05 时</option><option value="06">06 时</option><option value="07">07 时</option><option value="08">08 时</option><option value="09">09 时</option><option value="10">10 时</option><option value="11">11 时</option><option value="12">12 时</option><option value="13">13 时</option><option value="14">14 时</option><option value="15">15 时</option><option value="16">16 时</option><option value="17">17 时</option><option value="18">18 时</option><option value="19">19 时</option><option value="20">20 时</option><option value="21">21 时</option><option value="22">22 时</option><option value="23">23 时</option></select>
+      </div>
+      <div class="picker-col">
+        <label for="pickerMinute">分钟</label>
+        <div id="pickerMinuteWheel" class="minute-wheel" role="listbox" aria-label="循环选择分钟" tabindex="0"><div class="minute-wheel-inner"><div class="minute-item selected" data-minute="0">00</div><div class="minute-item" data-minute="1">01</div><div class="minute-item" data-minute="2">02</div><div class="minute-item" data-minute="3">03</div><div class="minute-item" data-minute="4">04</div><div class="minute-item" data-minute="5">05</div><div class="minute-item" data-minute="6">06</div><div class="minute-item" data-minute="7">07</div><div class="minute-item" data-minute="8">08</div><div class="minute-item" data-minute="9">09</div><div class="minute-item" data-minute="10">10</div><div class="minute-item" data-minute="11">11</div><div class="minute-item" data-minute="12">12</div><div class="minute-item" data-minute="13">13</div><div class="minute-item" data-minute="14">14</div><div class="minute-item" data-minute="15">15</div><div class="minute-item" data-minute="16">16</div><div class="minute-item" data-minute="17">17</div><div class="minute-item" data-minute="18">18</div><div class="minute-item" data-minute="19">19</div><div class="minute-item" data-minute="20">20</div><div class="minute-item" data-minute="21">21</div><div class="minute-item" data-minute="22">22</div><div class="minute-item" data-minute="23">23</div><div class="minute-item" data-minute="24">24</div><div class="minute-item" data-minute="25">25</div><div class="minute-item" data-minute="26">26</div><div class="minute-item" data-minute="27">27</div><div class="minute-item" data-minute="28">28</div><div class="minute-item" data-minute="29">29</div><div class="minute-item" data-minute="30">30</div><div class="minute-item" data-minute="31">31</div><div class="minute-item" data-minute="32">32</div><div class="minute-item" data-minute="33">33</div><div class="minute-item" data-minute="34">34</div><div class="minute-item" data-minute="35">35</div><div class="minute-item" data-minute="36">36</div><div class="minute-item" data-minute="37">37</div><div class="minute-item" data-minute="38">38</div><div class="minute-item" data-minute="39">39</div><div class="minute-item" data-minute="40">40</div><div class="minute-item" data-minute="41">41</div><div class="minute-item" data-minute="42">42</div><div class="minute-item" data-minute="43">43</div><div class="minute-item" data-minute="44">44</div><div class="minute-item" data-minute="45">45</div><div class="minute-item" data-minute="46">46</div><div class="minute-item" data-minute="47">47</div><div class="minute-item" data-minute="48">48</div><div class="minute-item" data-minute="49">49</div><div class="minute-item" data-minute="50">50</div><div class="minute-item" data-minute="51">51</div><div class="minute-item" data-minute="52">52</div><div class="minute-item" data-minute="53">53</div><div class="minute-item" data-minute="54">54</div><div class="minute-item" data-minute="55">55</div><div class="minute-item" data-minute="56">56</div><div class="minute-item" data-minute="57">57</div><div class="minute-item" data-minute="58">58</div><div class="minute-item" data-minute="59">59</div><div class="minute-item" data-minute="0">00</div><div class="minute-item" data-minute="1">01</div><div class="minute-item" data-minute="2">02</div><div class="minute-item" data-minute="3">03</div><div class="minute-item" data-minute="4">04</div><div class="minute-item" data-minute="5">05</div><div class="minute-item" data-minute="6">06</div><div class="minute-item" data-minute="7">07</div><div class="minute-item" data-minute="8">08</div><div class="minute-item" data-minute="9">09</div><div class="minute-item" data-minute="10">10</div><div class="minute-item" data-minute="11">11</div><div class="minute-item" data-minute="12">12</div><div class="minute-item" data-minute="13">13</div><div class="minute-item" data-minute="14">14</div><div class="minute-item" data-minute="15">15</div><div class="minute-item" data-minute="16">16</div><div class="minute-item" data-minute="17">17</div><div class="minute-item" data-minute="18">18</div><div class="minute-item" data-minute="19">19</div><div class="minute-item" data-minute="20">20</div><div class="minute-item" data-minute="21">21</div><div class="minute-item" data-minute="22">22</div><div class="minute-item" data-minute="23">23</div><div class="minute-item" data-minute="24">24</div><div class="minute-item" data-minute="25">25</div><div class="minute-item" data-minute="26">26</div><div class="minute-item" data-minute="27">27</div><div class="minute-item" data-minute="28">28</div><div class="minute-item" data-minute="29">29</div><div class="minute-item" data-minute="30">30</div><div class="minute-item" data-minute="31">31</div><div class="minute-item" data-minute="32">32</div><div class="minute-item" data-minute="33">33</div><div class="minute-item" data-minute="34">34</div><div class="minute-item" data-minute="35">35</div><div class="minute-item" data-minute="36">36</div><div class="minute-item" data-minute="37">37</div><div class="minute-item" data-minute="38">38</div><div class="minute-item" data-minute="39">39</div><div class="minute-item" data-minute="40">40</div><div class="minute-item" data-minute="41">41</div><div class="minute-item" data-minute="42">42</div><div class="minute-item" data-minute="43">43</div><div class="minute-item" data-minute="44">44</div><div class="minute-item" data-minute="45">45</div><div class="minute-item" data-minute="46">46</div><div class="minute-item" data-minute="47">47</div><div class="minute-item" data-minute="48">48</div><div class="minute-item" data-minute="49">49</div><div class="minute-item" data-minute="50">50</div><div class="minute-item" data-minute="51">51</div><div class="minute-item" data-minute="52">52</div><div class="minute-item" data-minute="53">53</div><div class="minute-item" data-minute="54">54</div><div class="minute-item" data-minute="55">55</div><div class="minute-item" data-minute="56">56</div><div class="minute-item" data-minute="57">57</div><div class="minute-item" data-minute="58">58</div><div class="minute-item" data-minute="59">59</div><div class="minute-item" data-minute="0">00</div><div class="minute-item" data-minute="1">01</div><div class="minute-item" data-minute="2">02</div><div class="minute-item" data-minute="3">03</div><div class="minute-item" data-minute="4">04</div><div class="minute-item" data-minute="5">05</div><div class="minute-item" data-minute="6">06</div><div class="minute-item" data-minute="7">07</div><div class="minute-item" data-minute="8">08</div><div class="minute-item" data-minute="9">09</div><div class="minute-item" data-minute="10">10</div><div class="minute-item" data-minute="11">11</div><div class="minute-item" data-minute="12">12</div><div class="minute-item" data-minute="13">13</div><div class="minute-item" data-minute="14">14</div><div class="minute-item" data-minute="15">15</div><div class="minute-item" data-minute="16">16</div><div class="minute-item" data-minute="17">17</div><div class="minute-item" data-minute="18">18</div><div class="minute-item" data-minute="19">19</div><div class="minute-item" data-minute="20">20</div><div class="minute-item" data-minute="21">21</div><div class="minute-item" data-minute="22">22</div><div class="minute-item" data-minute="23">23</div><div class="minute-item" data-minute="24">24</div><div class="minute-item" data-minute="25">25</div><div class="minute-item" data-minute="26">26</div><div class="minute-item" data-minute="27">27</div><div class="minute-item" data-minute="28">28</div><div class="minute-item" data-minute="29">29</div><div class="minute-item" data-minute="30">30</div><div class="minute-item" data-minute="31">31</div><div class="minute-item" data-minute="32">32</div><div class="minute-item" data-minute="33">33</div><div class="minute-item" data-minute="34">34</div><div class="minute-item" data-minute="35">35</div><div class="minute-item" data-minute="36">36</div><div class="minute-item" data-minute="37">37</div><div class="minute-item" data-minute="38">38</div><div class="minute-item" data-minute="39">39</div><div class="minute-item" data-minute="40">40</div><div class="minute-item" data-minute="41">41</div><div class="minute-item" data-minute="42">42</div><div class="minute-item" data-minute="43">43</div><div class="minute-item" data-minute="44">44</div><div class="minute-item" data-minute="45">45</div><div class="minute-item" data-minute="46">46</div><div class="minute-item" data-minute="47">47</div><div class="minute-item" data-minute="48">48</div><div class="minute-item" data-minute="49">49</div><div class="minute-item" data-minute="50">50</div><div class="minute-item" data-minute="51">51</div><div class="minute-item" data-minute="52">52</div><div class="minute-item" data-minute="53">53</div><div class="minute-item" data-minute="54">54</div><div class="minute-item" data-minute="55">55</div><div class="minute-item" data-minute="56">56</div><div class="minute-item" data-minute="57">57</div><div class="minute-item" data-minute="58">58</div><div class="minute-item" data-minute="59">59</div><div class="minute-item" data-minute="0">00</div><div class="minute-item" data-minute="1">01</div><div class="minute-item" data-minute="2">02</div><div class="minute-item" data-minute="3">03</div><div class="minute-item" data-minute="4">04</div><div class="minute-item" data-minute="5">05</div><div class="minute-item" data-minute="6">06</div><div class="minute-item" data-minute="7">07</div><div class="minute-item" data-minute="8">08</div><div class="minute-item" data-minute="9">09</div><div class="minute-item" data-minute="10">10</div><div class="minute-item" data-minute="11">11</div><div class="minute-item" data-minute="12">12</div><div class="minute-item" data-minute="13">13</div><div class="minute-item" data-minute="14">14</div><div class="minute-item" data-minute="15">15</div><div class="minute-item" data-minute="16">16</div><div class="minute-item" data-minute="17">17</div><div class="minute-item" data-minute="18">18</div><div class="minute-item" data-minute="19">19</div><div class="minute-item" data-minute="20">20</div><div class="minute-item" data-minute="21">21</div><div class="minute-item" data-minute="22">22</div><div class="minute-item" data-minute="23">23</div><div class="minute-item" data-minute="24">24</div><div class="minute-item" data-minute="25">25</div><div class="minute-item" data-minute="26">26</div><div class="minute-item" data-minute="27">27</div><div class="minute-item" data-minute="28">28</div><div class="minute-item" data-minute="29">29</div><div class="minute-item" data-minute="30">30</div><div class="minute-item" data-minute="31">31</div><div class="minute-item" data-minute="32">32</div><div class="minute-item" data-minute="33">33</div><div class="minute-item" data-minute="34">34</div><div class="minute-item" data-minute="35">35</div><div class="minute-item" data-minute="36">36</div><div class="minute-item" data-minute="37">37</div><div class="minute-item" data-minute="38">38</div><div class="minute-item" data-minute="39">39</div><div class="minute-item" data-minute="40">40</div><div class="minute-item" data-minute="41">41</div><div class="minute-item" data-minute="42">42</div><div class="minute-item" data-minute="43">43</div><div class="minute-item" data-minute="44">44</div><div class="minute-item" data-minute="45">45</div><div class="minute-item" data-minute="46">46</div><div class="minute-item" data-minute="47">47</div><div class="minute-item" data-minute="48">48</div><div class="minute-item" data-minute="49">49</div><div class="minute-item" data-minute="50">50</div><div class="minute-item" data-minute="51">51</div><div class="minute-item" data-minute="52">52</div><div class="minute-item" data-minute="53">53</div><div class="minute-item" data-minute="54">54</div><div class="minute-item" data-minute="55">55</div><div class="minute-item" data-minute="56">56</div><div class="minute-item" data-minute="57">57</div><div class="minute-item" data-minute="58">58</div><div class="minute-item" data-minute="59">59</div><div class="minute-item" data-minute="0">00</div><div class="minute-item" data-minute="1">01</div><div class="minute-item" data-minute="2">02</div><div class="minute-item" data-minute="3">03</div><div class="minute-item" data-minute="4">04</div><div class="minute-item" data-minute="5">05</div><div class="minute-item" data-minute="6">06</div><div class="minute-item" data-minute="7">07</div><div class="minute-item" data-minute="8">08</div><div class="minute-item" data-minute="9">09</div><div class="minute-item" data-minute="10">10</div><div class="minute-item" data-minute="11">11</div><div class="minute-item" data-minute="12">12</div><div class="minute-item" data-minute="13">13</div><div class="minute-item" data-minute="14">14</div><div class="minute-item" data-minute="15">15</div><div class="minute-item" data-minute="16">16</div><div class="minute-item" data-minute="17">17</div><div class="minute-item" data-minute="18">18</div><div class="minute-item" data-minute="19">19</div><div class="minute-item" data-minute="20">20</div><div class="minute-item" data-minute="21">21</div><div class="minute-item" data-minute="22">22</div><div class="minute-item" data-minute="23">23</div><div class="minute-item" data-minute="24">24</div><div class="minute-item" data-minute="25">25</div><div class="minute-item" data-minute="26">26</div><div class="minute-item" data-minute="27">27</div><div class="minute-item" data-minute="28">28</div><div class="minute-item" data-minute="29">29</div><div class="minute-item" data-minute="30">30</div><div class="minute-item" data-minute="31">31</div><div class="minute-item" data-minute="32">32</div><div class="minute-item" data-minute="33">33</div><div class="minute-item" data-minute="34">34</div><div class="minute-item" data-minute="35">35</div><div class="minute-item" data-minute="36">36</div><div class="minute-item" data-minute="37">37</div><div class="minute-item" data-minute="38">38</div><div class="minute-item" data-minute="39">39</div><div class="minute-item" data-minute="40">40</div><div class="minute-item" data-minute="41">41</div><div class="minute-item" data-minute="42">42</div><div class="minute-item" data-minute="43">43</div><div class="minute-item" data-minute="44">44</div><div class="minute-item" data-minute="45">45</div><div class="minute-item" data-minute="46">46</div><div class="minute-item" data-minute="47">47</div><div class="minute-item" data-minute="48">48</div><div class="minute-item" data-minute="49">49</div><div class="minute-item" data-minute="50">50</div><div class="minute-item" data-minute="51">51</div><div class="minute-item" data-minute="52">52</div><div class="minute-item" data-minute="53">53</div><div class="minute-item" data-minute="54">54</div><div class="minute-item" data-minute="55">55</div><div class="minute-item" data-minute="56">56</div><div class="minute-item" data-minute="57">57</div><div class="minute-item" data-minute="58">58</div><div class="minute-item" data-minute="59">59</div><div class="minute-item" data-minute="0">00</div><div class="minute-item" data-minute="1">01</div><div class="minute-item" data-minute="2">02</div><div class="minute-item" data-minute="3">03</div><div class="minute-item" data-minute="4">04</div><div class="minute-item" data-minute="5">05</div><div class="minute-item" data-minute="6">06</div><div class="minute-item" data-minute="7">07</div><div class="minute-item" data-minute="8">08</div><div class="minute-item" data-minute="9">09</div><div class="minute-item" data-minute="10">10</div><div class="minute-item" data-minute="11">11</div><div class="minute-item" data-minute="12">12</div><div class="minute-item" data-minute="13">13</div><div class="minute-item" data-minute="14">14</div><div class="minute-item" data-minute="15">15</div><div class="minute-item" data-minute="16">16</div><div class="minute-item" data-minute="17">17</div><div class="minute-item" data-minute="18">18</div><div class="minute-item" data-minute="19">19</div><div class="minute-item" data-minute="20">20</div><div class="minute-item" data-minute="21">21</div><div class="minute-item" data-minute="22">22</div><div class="minute-item" data-minute="23">23</div><div class="minute-item" data-minute="24">24</div><div class="minute-item" data-minute="25">25</div><div class="minute-item" data-minute="26">26</div><div class="minute-item" data-minute="27">27</div><div class="minute-item" data-minute="28">28</div><div class="minute-item" data-minute="29">29</div><div class="minute-item" data-minute="30">30</div><div class="minute-item" data-minute="31">31</div><div class="minute-item" data-minute="32">32</div><div class="minute-item" data-minute="33">33</div><div class="minute-item" data-minute="34">34</div><div class="minute-item" data-minute="35">35</div><div class="minute-item" data-minute="36">36</div><div class="minute-item" data-minute="37">37</div><div class="minute-item" data-minute="38">38</div><div class="minute-item" data-minute="39">39</div><div class="minute-item" data-minute="40">40</div><div class="minute-item" data-minute="41">41</div><div class="minute-item" data-minute="42">42</div><div class="minute-item" data-minute="43">43</div><div class="minute-item" data-minute="44">44</div><div class="minute-item" data-minute="45">45</div><div class="minute-item" data-minute="46">46</div><div class="minute-item" data-minute="47">47</div><div class="minute-item" data-minute="48">48</div><div class="minute-item" data-minute="49">49</div><div class="minute-item" data-minute="50">50</div><div class="minute-item" data-minute="51">51</div><div class="minute-item" data-minute="52">52</div><div class="minute-item" data-minute="53">53</div><div class="minute-item" data-minute="54">54</div><div class="minute-item" data-minute="55">55</div><div class="minute-item" data-minute="56">56</div><div class="minute-item" data-minute="57">57</div><div class="minute-item" data-minute="58">58</div><div class="minute-item" data-minute="59">59</div><div class="minute-item" data-minute="0">00</div><div class="minute-item" data-minute="1">01</div><div class="minute-item" data-minute="2">02</div><div class="minute-item" data-minute="3">03</div><div class="minute-item" data-minute="4">04</div><div class="minute-item" data-minute="5">05</div><div class="minute-item" data-minute="6">06</div><div class="minute-item" data-minute="7">07</div><div class="minute-item" data-minute="8">08</div><div class="minute-item" data-minute="9">09</div><div class="minute-item" data-minute="10">10</div><div class="minute-item" data-minute="11">11</div><div class="minute-item" data-minute="12">12</div><div class="minute-item" data-minute="13">13</div><div class="minute-item" data-minute="14">14</div><div class="minute-item" data-minute="15">15</div><div class="minute-item" data-minute="16">16</div><div class="minute-item" data-minute="17">17</div><div class="minute-item" data-minute="18">18</div><div class="minute-item" data-minute="19">19</div><div class="minute-item" data-minute="20">20</div><div class="minute-item" data-minute="21">21</div><div class="minute-item" data-minute="22">22</div><div class="minute-item" data-minute="23">23</div><div class="minute-item" data-minute="24">24</div><div class="minute-item" data-minute="25">25</div><div class="minute-item" data-minute="26">26</div><div class="minute-item" data-minute="27">27</div><div class="minute-item" data-minute="28">28</div><div class="minute-item" data-minute="29">29</div><div class="minute-item" data-minute="30">30</div><div class="minute-item" data-minute="31">31</div><div class="minute-item" data-minute="32">32</div><div class="minute-item" data-minute="33">33</div><div class="minute-item" data-minute="34">34</div><div class="minute-item" data-minute="35">35</div><div class="minute-item" data-minute="36">36</div><div class="minute-item" data-minute="37">37</div><div class="minute-item" data-minute="38">38</div><div class="minute-item" data-minute="39">39</div><div class="minute-item" data-minute="40">40</div><div class="minute-item" data-minute="41">41</div><div class="minute-item" data-minute="42">42</div><div class="minute-item" data-minute="43">43</div><div class="minute-item" data-minute="44">44</div><div class="minute-item" data-minute="45">45</div><div class="minute-item" data-minute="46">46</div><div class="minute-item" data-minute="47">47</div><div class="minute-item" data-minute="48">48</div><div class="minute-item" data-minute="49">49</div><div class="minute-item" data-minute="50">50</div><div class="minute-item" data-minute="51">51</div><div class="minute-item" data-minute="52">52</div><div class="minute-item" data-minute="53">53</div><div class="minute-item" data-minute="54">54</div><div class="minute-item" data-minute="55">55</div><div class="minute-item" data-minute="56">56</div><div class="minute-item" data-minute="57">57</div><div class="minute-item" data-minute="58">58</div><div class="minute-item" data-minute="59">59</div></div></div>
+      </div>
+    </div>
+    <div class="help">先选择小时，再选择分钟；支持 00–23 时、00–59 分。</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const state = { nextId: 1, lastText: "" };
+
+function ceilDiv(n, d) { return Math.floor((n + d - 1) / d); }
+function money(cents) { return "¥ " + (cents / 100).toFixed(2); }
+function toCents(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n) || n < 0) return null;
+  return Math.round((n + Number.EPSILON) * 100);
+}
+function parseTime(value) {
+  const s = String(value || "").trim();
+  const m = s.match(/^([01]?\d|2[0-3]):([0-5]\d)$/);
+  if (!m) return null;
+  return Number(m[1]) * 60 + Number(m[2]);
+}
+let activeTimeInput = null;
+let minuteScrollTimer = null;
+let minuteSelected = 0;
+let minuteProgrammatic = false;
+const MINUTE_CYCLES = 7;
+function renderMinuteWheel(initialMinute = 0) {
+  const wheel = $("pickerMinuteWheel");
+  wheel.innerHTML = "";
+  const inner = document.createElement("div");
+  inner.className = "minute-wheel-inner";
+  for (let cycle = 0; cycle < MINUTE_CYCLES; cycle++) {
+    for (let minute = 0; minute < 60; minute++) {
+      const item = document.createElement("div");
+      item.className = "minute-item";
+      item.dataset.minute = String(minute);
+      item.textContent = String(minute).padStart(2, "0");
+      inner.append(item);
+    }
+  }
+  wheel.append(inner);
+  minuteSelected = initialMinute;
+  const centerIndex = 3 * 60 + initialMinute;
+  minuteProgrammatic = true;
+  wheel.scrollTop = centerIndex * 38;
+  requestAnimationFrame(() => {
+    minuteProgrammatic = false;
+    updateMinuteHighlight();
+  });
+}
+function selectedMinuteFromWheel() {
+  const wheel = $("pickerMinuteWheel");
+  const index = Math.round(wheel.scrollTop / 38);
+  return ((index % 60) + 60) % 60;
+}
+function updateMinuteHighlight() {
+  const wheel = $("pickerMinuteWheel");
+  const index = Math.round(wheel.scrollTop / 38);
+  const items = wheel.querySelectorAll(".minute-item");
+  items.forEach((item, i) => item.classList.toggle("selected", i === index));
+  minuteSelected = ((index % 60) + 60) % 60;
+  updatePickerPreview();
+}
+function recenterMinuteWheel() {
+  const wheel = $("pickerMinuteWheel");
+  const index = Math.round(wheel.scrollTop / 38);
+  const cycle = Math.floor(index / 60);
+  if (cycle <= 1 || cycle >= MINUTE_CYCLES - 2) {
+    const targetIndex = 3 * 60 + minuteSelected;
+    minuteProgrammatic = true;
+    wheel.scrollTop = targetIndex * 38;
+    requestAnimationFrame(() => { minuteProgrammatic = false; updateMinuteHighlight(); });
+  }
+}
+function initTimePicker() {
+  const hour = $("pickerHour");
+  for (let h = 0; h < 24; h++) {
+    const option = document.createElement("option");
+    option.value = String(h).padStart(2, "0");
+    option.textContent = String(h).padStart(2, "0") + " 时";
+    hour.append(option);
+  }
+  hour.addEventListener("change", updatePickerPreview);
+  renderMinuteWheel(0);
+  $("pickerMinuteWheel").addEventListener("scroll", () => {
+    if (minuteProgrammatic) return;
+    updateMinuteHighlight();
+    clearTimeout(minuteScrollTimer);
+    minuteScrollTimer = setTimeout(recenterMinuteWheel, 120);
+  }, { passive: true });
+  $("pickerMinuteWheel").addEventListener("keydown", event => {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      const direction = event.key === "ArrowDown" ? 1 : -1;
+      const next = (minuteSelected + direction + 60) % 60;
+      scrollToMinute(next);
+    }
+  });
+}
+function scrollToMinute(minute) {
+  const wheel = $("pickerMinuteWheel");
+  const currentIndex = Math.round(wheel.scrollTop / 38);
+  const cycle = Math.floor(currentIndex / 60);
+  const targetIndex = cycle * 60 + minute;
+  minuteProgrammatic = true;
+  wheel.scrollTo({ top: targetIndex * 38, behavior: "smooth" });
+  setTimeout(() => { minuteProgrammatic = false; updateMinuteHighlight(); recenterMinuteWheel(); }, 250);
+}
+function updatePickerPreview() {
+  $("pickerPreview").textContent = `${$("pickerHour").value}:${String(minuteSelected).padStart(2, "0")}`;
+}
+function openTimePicker(input) {
+  activeTimeInput = input;
+  const value = input.value.trim();
+  const match = value.match(/^([01]?\\d|2[0-3]):([0-5]\\d)$/);
+  $("pickerHour").value = match ? match[1].padStart(2, "0") : "19";
+  renderMinuteWheel(match ? Number(match[2]) : 0);
+  $("pickerTitle").textContent = input.classList.contains("start") ? "选择开始时间" : "选择结束时间";
+  updatePickerPreview();
+  $("timePicker").classList.add("show");
+}
+function closeTimePicker() {
+  $("timePicker").classList.remove("show");
+  activeTimeInput = null;
+}
+function confirmTimePicker() {
+  if (!activeTimeInput) return;
+  activeTimeInput.value = `${$("pickerHour").value}:${String(minuteSelected).padStart(2, "0")}`;
+  activeTimeInput.setCustomValidity("");
+  closeTimePicker();
+  calculate();
+}
+function toast(message) {
+  const el = $("toast");
+  el.textContent = message;
+  el.classList.add("show");
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => el.classList.remove("show"), 1900);
+}
+function saveSettings() {
+  const data = {
+    people: $("people").value,
+    beforeRate: $("beforeRate").value,
+    afterRate: $("afterRate").value,
+    boundary: $("boundary").value
+  };
+  try { localStorage.setItem("four_seasons_badminton_settings", JSON.stringify(data)); } catch (_) {}
+}
+function loadSettings() {
+  try {
+    const d = JSON.parse(localStorage.getItem("four_seasons_badminton_settings") || "null");
+    if (!d) return;
+    if (d.people !== undefined) $("people").value = d.people;
+    if (d.beforeRate !== undefined) $("beforeRate").value = d.beforeRate;
+    if (d.afterRate !== undefined) $("afterRate").value = d.afterRate;
+    if (d.boundary) $("boundary").value = d.boundary;
+  } catch (_) {}
+}
+function addCourt(start = "", end = "") {
+  const id = state.nextId++;
+  const node = document.createElement("div");
+  node.className = "court";
+  node.dataset.id = id;
+  node.innerHTML = `
+    <div class="court-head">
+      <span class="court-name">场地 <span class="court-index">${id}</span></span>
+      <button type="button" class="remove">移除</button>
+    </div>
+    <div class="court-fields">
+      <div>
+        <label>开始时间</label>
+        <input class="start time-input" type="text" readonly inputmode="none" placeholder="选择时间" value="${start}" aria-label="开始时间">
+      </div>
+      <div>
+        <label>结束时间</label>
+        <input class="end time-input" type="text" readonly inputmode="none" placeholder="选择时间" value="${end}" aria-label="结束时间">
+      </div>
+    </div>`;
+  node.querySelector(".remove").addEventListener("click", () => {
+    node.remove();
+    renumberCourts();
+    calculate();
+  });
+$("courtList").append(node);
+  renumberCourts();
+  calculate();
+}
+function renumberCourts() {
+  [...$("courtList").children].forEach((node, i) => {
+    node.querySelector(".court-index").textContent = i + 1;
+    node.querySelector(".court-name").childNodes[0].textContent = "场地 ";
+  });
+}
+function escapeAttr(s) {
+  return String(s).replace(/[&"<>]/g, c => ({"&":"&amp;",'"':"&quot;","<":"&lt;",">":"&gt;"}[c]));
+}
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function calculateCourt(start, end, boundary, beforeRate, afterRate) {
+  if (start === null || end === null) return { error: "时间格式无效，请输入 HH:mm" };
+  if (end <= start) return { error: "结束时间必须晚于开始时间（不跨天）" };
+  const beforeMinutes = Math.max(0, Math.min(end, boundary) - start);
+  const afterMinutes = Math.max(0, end - Math.max(start, boundary));
+  // Keep exact numerator in fen*minutes and round up once per court.
+  const exactNumerator = beforeRate * beforeMinutes + afterRate * afterMinutes;
+  const cents = ceilDiv(exactNumerator, 60);
+  return { beforeMinutes, afterMinutes, exactNumerator, cents };
+}
+function calculate() {
+  const boundary = parseTime($("boundary").value);
+  const beforeRate = toCents($("beforeRate").value);
+  const afterRate = toCents($("afterRate").value);
+  const people = Math.max(0, Math.floor(Number($("people").value) || 0));
+  const details = $("details");
+  details.innerHTML = "";
+
+  if (boundary === null || beforeRate === null || afterRate === null) {
+    $("total").textContent = "—";
+    $("average").textContent = "—";
+    $("peopleSummary").textContent = people + " 人";
+    $("validCount").textContent = "规则待检查";
+    details.innerHTML = '<div class="empty" style="color:var(--red)">请检查分界时间（HH:mm）和收费单价。</div>';
+    state.lastText = "";
+    return;
+  }
+
+  let total = 0, valid = 0, errorCount = 0;
+  const textRows = [];
+  [...$("courtList").children].forEach((node, i) => {
+    const no = `第 ${i + 1} 片场地`;
+    const startText = node.querySelector(".start").value.trim();
+    const endText = node.querySelector(".end").value.trim();
+    if (!startText && !endText) return;
+    const result = calculateCourt(parseTime(startText), parseTime(endText), boundary, beforeRate, afterRate);
+    const row = document.createElement("div");
+    row.className = "detail";
+    if (result.error) {
+      errorCount++;
+      row.innerHTML = `<div class="detail-main"><div class="detail-title">${escapeHTML(no)} · ${escapeHTML(startText || "--")}–${escapeHTML(endText || "--")}</div><div class="detail-sub" style="color:var(--red)">${result.error}</div></div><div class="detail-amount" style="color:var(--red)">待修正</div>`;
+      details.append(row);
+      textRows.push(`${no}: 时间无效（${startText}-${endText}）`);
+      return;
+    }
+    valid++;
+    total += result.cents;
+    row.innerHTML = `<div class="detail-main"><div class="detail-title">${escapeHTML(no)}　${escapeHTML(startText)}–${escapeHTML(endText)}</div></div><div class="detail-amount">${money(result.cents)}</div>`;
+    details.append(row);
+    textRows.push(`${no} ${startText}-${endText}：${money(result.cents)}`);
+  });
+
+  if (valid === 0 && errorCount === 0) {
+    details.innerHTML = '<div class="empty">填写场地序号、开始和结束时间后，自动显示逐片费用明细。</div>';
+  }
+  const average = people > 0 ? ceilDiv(total, people) : null;
+  $("total").textContent = money(total);
+  $("average").textContent = average === null ? "—" : money(average);
+  $("peopleSummary").textContent = people + " 人";
+  $("validCount").textContent = `${valid} 片有效${errorCount ? ` · ${errorCount} 项待修正` : ""}`;
+  if (errorCount) {
+    const warning = document.createElement("div");
+    warning.className = "empty";
+    warning.style.color = "var(--red)";
+    warning.textContent = "存在无效时间记录，当前总额仅汇总有效场地。请修正后再使用。";
+    details.append(warning);
+  }
+  state.lastText = [
+    "四季徽羽｜场地费用明细",
+    `参与人数：${people} 人`,
+    `场地费用总额：${money(total)}`,
+    `人均费用：${average === null ? "未计算" : money(average)}`,
+    "",
+    ...textRows
+  ].join("\n");
+}
+["people", "beforeRate", "afterRate", "boundary"].forEach(id => {
+  $(id).addEventListener("input", () => { saveSettings(); calculate(); });
+});
+$("addCourt").addEventListener("click", () => addCourt("", "", ""));
+$("reset").addEventListener("click", () => {
+  if (!confirm("恢复默认收费规则和人数？场地记录不会删除。")) return;
+  $("people").value = "15";
+  $("beforeRate").value = "30";
+  $("afterRate").value = "20";
+  $("boundary").value = "21:00";
+  saveSettings(); calculate(); toast("已恢复默认设置");
+});
+$("copy").addEventListener("click", async () => {
+  calculate();
+  if (!state.lastText) { toast("请先检查收费规则"); return; }
+  try {
+    await navigator.clipboard.writeText(state.lastText);
+    toast("费用明细已复制");
+  } catch (_) {
+    const ta = document.createElement("textarea");
+    ta.value = state.lastText;
+    document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); ta.remove();
+    toast("费用明细已复制");
+  }
+});
+
+$("courtList").addEventListener("click", event => {
+  const input = event.target.closest("input.time-input");
+  if (input && $("courtList").contains(input)) openTimePicker(input);
+});
+$("pickerCancel").addEventListener("click", closeTimePicker);
+$("pickerDone").addEventListener("click", confirmTimePicker);
+$("timePicker").addEventListener("click", event => {
+  if (event.target === $("timePicker")) closeTimePicker();
+});
+initTimePicker();
+
+loadSettings();
+addCourt("", "");
+calculate();
+</script>
+
+</body></html>
